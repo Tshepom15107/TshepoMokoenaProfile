@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tshepo Mokoena - Software Engineer</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body{
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    }
+
+    .back-vid{
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    .main-section{
+      width: 90%;
+      max-width: 1400px;
+      margin: 20px auto;
+      background: rgba(74, 207, 238, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      box-shadow: 0 8px 32px rgba(74, 207, 238, 0.3);
+      border: 1px solid rgba(74, 207, 238, 0.2);
+      min-height: calc(100vh - 40px);
+    }
+
+    nav{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 40px;
+      border-bottom: 1px solid rgba(74, 207, 238, 0.2);
+    }
+
+    nav h1{
+      color: white;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    nav ul{
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a{
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #4acfee;
+      background: rgba(74, 207, 238, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .section {
+      display: none;
+      padding: 40px;
+      color: white;
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero{
+      display: flex;
+      align-items: center;
+      min-height: 60vh;
+      padding: 0 40px;
+      color: white;
+      justify-content: space-between;
+      gap: 50px;
+    }
+
+    .hero-info {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    .hero h1{
+      font-size: clamp(40px, 5vw, 60px);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero h2{
+      font-size: clamp(24px, 3vw, 32px);
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #4acfee, #53f8c9, #6070fd, #5bbdff);
+      background-size: 300%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-shift 3s ease-in-out infinite;
+    }
+
+    .hero p{
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .buttons-container{
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn{
+      padding: 15px 30px;
+      background: linear-gradient(45deg, #4acfee, #53f8c9);
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #0e1217;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(74, 207, 238, 0.3);
+    }
+
+    .btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(74, 207, 238, 0.5);
+    }
+
+    .social-icons{
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border: 2px solid #4acfee;
+      border-radius: 50%;
+      color: #4acfee;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover{
+      background: #4acfee;
+      color: #0e1217;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(74, 207, 238, 0.4);
+    }
+
+    .hero-img{
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #4acfee;
+      box-shadow: 0 0 30px rgba(74, 207, 238, 0.5);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .hero-img:hover{
+      transform: scale(1.05);
+      box-shadow: 0 0 50px rgba(74, 207, 238, 0.7);
+    }
+
+    .hero-img img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .stats-section{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+      padding: 0 40px;
+    }
+
+    .stat-card{
+      text-align: center;
+      padding: 30px 20px;
+      background: rgba(74, 207, 238, 0.1);
+      border-radius: 15px;
+      border: 1px solid rgba(74, 207, 238, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(74, 207, 238, 0.2);
+    }
+
+    .stat-card h3{
+      font-size: 48px;
+      background: linear-gradient(45deg, #4acfee, #53f8c9);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .stat-card p{
+      color: white;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .about-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .about-content h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      text-align: center;
+      background: linear-gradient(45deg, #4acfee, #53f8c9);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-text {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .skill-category {
+      background: rgba(74, 207, 238, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid rgba(74, 207, 238, 0.2);
+    }
+
+    .skill-category h3 {
+      color: #4acfee;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .skill-category ul {
+      list-style: none;
+    }
+
+    .skill-category li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(74, 207, 238, 0.1);
+    }
+
+    .experience-timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      background: rgba(74, 207, 238, 0.1);
+      padding: 30px;
+      margin: 30px 0;
+      border-radius: 15px;
+      border-left: 4px solid #4acfee;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 5px 20px rgba(74, 207, 238, 0.2);
+    }
+
+    .timeline-item h3 {
+      color: #4acfee;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-item .company {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .timeline-item .duration {
+      color: #53f8c9;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .timeline-item ul {
+      margin-left: 20px;
+    }
+
+    .timeline-item li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: rgba(74, 207, 238, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid rgba(74, 207, 238, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(74, 207, 238, 0.3);
+    }
+
+    .project-card h3 {
+      color: #4acfee;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .project-card .tech-stack {
+      color: #53f8c9;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .project-card p {
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .contact-card {
+      background: rgba(74, 207, 238, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid rgba(74, 207, 238, 0.2);
+    }
+
+    .contact-card i {
+      font-size: 36px;
+      color: #4acfee;
+      margin-bottom: 15px;
+    }
+
+    .contact-card h3 {
+      color: #4acfee;
+      margin-bottom: 10px;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .hero-img {
+        width: 250px;
+        height: 250px;
+        margin-top: 30px;
+      }
+
+      .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px;
+      }
+
+      .section {
+        padding: 20px;
+      }
+
+      .main-section {
+        width: 95%;
+        margin: 10px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video autoplay loop muted playsinline class="back-vid">
+    <source src="https://cdn.pixabay.com/video/2022/11/27/141007-773995146_large.mp4" type="video/mp4">
+  </video>
+  
+  <div class="main-section">
+    <nav>
+      <h1 data-aos="zoom-in" data-aos-duration="1000">
+        <span style="color: #4acfee;">Tshepo</span> Mokoena
+      </h1>
+      <ul id="navMenu">
+        <li><a href="#" class="nav-link active" data-section="home" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">Home</a></li>
+        <li><a href="#" class="nav-link" data-section="about" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">About</a></li>
+        <li><a href="#" class="nav-link" data-section="experience" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">Experience</a></li>
+        <li><a href="#" class="nav-link" data-section="projects" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Projects</a></li>
+        <li><a href="#" class="nav-link" data-section="contact" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Home Section -->
+    <div id="home" class="section active">
+      <div class="hero">
+        <div class="hero-info">
+          <h1 data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
+            Hi, I'm <span style="color: #4acfee;">Tshepo Mokoena</span>
+          </h1>
+          <h2 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500">
+            Software Engineer
+          </h2>
+          <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">
+            Results-oriented Software Engineer with 3+ years of hands-on experience in full-stack development. 
+            Proficient in .NET Core, Angular, and Zoho Platform, with a strong understanding of agile practices, 
+            CI/CD pipelines, and responsive UI/UX design.
+          </p>
+          <div class="buttons-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="900">
+            <a href="#" class="btn" onclick="showSection('contact')">Hire Me</a>
+            <div class="social-icons">
+              <a href="https://github.com/tshepom15107" target="_blank"><i class='bx bxl-github'></i></a>
+              <a href="https://www.linkedin.com/in/tshepo-mokoena-0727a621b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BbA3hnWtARiiM0vXi7WjgWA%3D%3D" target="_blank"><i class='bx bxl-linkedin'></i></a>
+              <a href="mailto:tshepom15107@gmail.com"><i class='bx bxl-gmail'></i></a>
+              <a href="tel:+27734057746"><i class='bx bxs-phone'></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-img" data-aos="zoom-in-left" data-aos-duration="1500">
+          <img src="images/profile-placeholder.jpg" alt="Tshepo Mokoena">
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <div class="stat-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1100">
+          <h3>3+</h3>
+          <p>Years of Experience</p>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1200">
+          <h3>10+</h3>
+          <p>Technical Skills</p>
+        </div>
+        
+        
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="section">
+      <div class="about-content">
+        <h2 data-aos="fade-down">About Me</h2>
+        <div class="about-text" data-aos="fade-up">
+          <p>I am a passionate Software Engineer with over 3 years of experience in developing scalable web applications and providing technical solutions. Based in Pretoria, South Africa, I specialize in full-stack development using modern technologies like .NET Core, Angular, and cloud platforms.</p>
+          
+          <p>My journey in software development began with an internship at Cumlaude Research Institute, where I discovered my passion for creating efficient, user-friendly applications. Since then, I've worked with various companies, from startups to established enterprises, always focusing on delivering high-quality solutions that meet business objectives.</p>
+          
+          <p>I hold a National Diploma in Information Technology and an Advanced Diploma in Applied Management from Central University of Technology. I'm also CompTIA A+ certified, demonstrating my commitment to continuous learning and professional development.</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-category" data-aos="fade-right">
+            <h3>Frontend Technologies</h3>
+            <ul>
+              <li>Angular</li>
+              <li>JavaScript (ES6+)</li>
+              <li>HTML5 & CSS3</li>
+              <li>Bootstrap</li>
+              <li>Responsive Design</li>
+            </ul>
+          </div>
+          
+          <div class="skill-category" data-aos="fade-up">
+            <h3>Backend Technologies</h3>
+            <ul>
+              <li>C# / .NET Core</li>
+              <li>ASP.NET MVC</li>
+              <li>SQL Server</li>
+              <li>MySQL</li>
+              <li>API Development</li>
+            </ul>
+          </div>
+          
+          <div class="skill-category" data-aos="fade-left">
+            <h3>Tools & Platforms</h3>
+            <ul>
+              <li>Azure DevOps</li>
+              <li>Git Version Control</li>
+              <li>Zoho Creator</li>
+              <li>Jira Service Desk</li>
+              <li>CI/CD Pipelines</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div id="experience" class="section">
+      <h2 data-aos="fade-down" style="text-align: center; font-size: 36px; margin-bottom: 50px; background: linear-gradient(45deg, #4acfee, #53f8c9); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Professional Experience</h2>
+      
+      <div class="experience-timeline">
+        <div class="timeline-item" data-aos="fade-right">
+          <h3>Software Developer</h3>
+          <div class="company">FundaMedical</div>
+          <div class="duration">Present</div>
+          <ul>
+            <li>Develop and maintain scalable web applications using C#, .NET Core, and Angular</li>
+            <li>Build tools and forms on the Zoho platform to streamline operations</li>
+            <li>Provide technical support to internal users and troubleshoot application issues</li>
+            <li>Offer user training and documentation for custom-built solutions</li>
+            <li>Participate in sprint planning and contribute to continuous improvement initiatives</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-left">
+          <h3>Software Developer</h3>
+          <div class="company">Erox Pty Ltd</div>
+          <div class="duration">2022 – 2023</div>
+          <ul>
+            <li>Led development of scalable applications using ASP.NET MVC and C#</li>
+            <li>Provided on-site and remote technical assistance during enterprise solution rollouts</li>
+            <li>Supported users of Bushveld Minerals' SHE system with real-time debugging</li>
+            <li>Collaborated with DevOps team to improve system uptime and monitoring</li>
+            <li>Championed agile practices for improved team efficiency</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-right">
+          <h3>Software Development Intern</h3>
+          <div class="company">Cumlaude Research Institute</div>
+          <div class="duration">2020 – 2021</div>
+          <ul>
+            <li>Assisted in developing web applications using JavaScript, HTML, and CSS</li>
+            <li>Responded to technical support tickets and performed bug triaging</li>
+            <li>Participated in requirement analysis, feature implementation, and system testing</li>
+            <li>Contributed to technical documentation and performed bug fixes</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-left">
+          <h3>IT Support Freelancer</h3>
+          <div class="company">Back2Back Media</div>
+          <div class="duration">2016 – 2017</div>
+          <ul>
+            <li>Provided technical assistance for hardware and software issues</li>
+            <li>Maintained network infrastructure and handled system updates</li>
+            <li>Supported deployment and basic configuration of IT systems</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div id="projects" class="section">
+      <h2 data-aos="fade-down" style="text-align: center; font-size: 36px; margin-bottom: 50px; background: linear-gradient(45deg, #4acfee, #53f8c9); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Featured Projects</h2>
+      
+      <div class="projects-grid">
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-icon" style="width: 60px; height: 60px; background: linear-gradient(45deg, #4acfee, #53f8c9); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;"><i class='bx bx-desktop' style="font-size: 30px; color: white;"></i></div>
+          <h3>FundaNet Enterprise Web Application</h3>
+          <div class="tech-stack">C#, .NET Core, Angular, SQL Server</div>
+          <p>Developed a comprehensive enterprise solution for FundaMedical, featuring user management, reporting dashboards, and real-time data processing. Implemented CI/CD pipelines for automated deployment.</p>
+          <div class="project-links" style="margin-top: 20px;">
+            <a href="#" class="project-btn" style="padding: 8px 20px; background: rgba(74, 207, 238, 0.2); color: #4acfee; border: 1px solid #4acfee; border-radius: 20px; text-decoration: none; margin-right: 10px; font-size: 14px; transition: all 0.3s ease;">View Details</a>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-icon" style="width: 60px; height: 60px; background: linear-gradient(45deg, #4acfee, #53f8c9); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;"><i class='bx bx-cog' style="font-size: 30px; color: white;"></i></div>
+          <h3>Zoho Platform Integration</h3>
+          <div class="tech-stack">Zoho Creator, JavaScript, APIs</div>
+          <p>Built custom forms and workflows on the Zoho platform to streamline business operations. Created automated processes that reduced manual work by 60% and improved data accuracy.</p>
+          <div class="project-links" style="margin-top: 20px;">
+            <a href="#" class="project-btn" style="padding: 8px 20px; background: rgba(74, 207, 238, 0.2); color: #4acfee; border: 1px solid #4acfee; border-radius: 20px; text-decoration: none; margin-right: 10px; font-size: 14px; transition: all 0.3s ease;">View Details</a>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-icon" style="width: 60px; height: 60px; background: linear-gradient(45deg, #4acfee, #53f8c9); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;"><i class='bx bx-shield-check' style="font-size: 30px; color: white;"></i></div>
+          <h3>SHE Management System</h3>
+          <div class="tech-stack">ASP.NET MVC, C#, Bootstrap</div>
+          <p>Developed and maintained a Safety, Health, and Environment management system for Bushveld Minerals. Provided real-time monitoring and reporting capabilities with responsive UI design.</p>
+          <div class="project-links" style="margin-top: 20px;">
+            <a href="#" class="project-btn" style="padding: 8px 20px; background: rgba(74, 207, 238, 0.2); color: #4acfee; border: 1px solid #4acfee; border-radius: 20px; text-decoration: none; margin-right: 10px; font-size: 14px; transition: all 0.3s ease;">View Details</a>
+          </div>
+        </div>
+       
+           
+      </div>
+
+      <!-- Education & Certifications Section -->
+      <div style="margin-top: 80px;">
+        <h3 data-aos="fade-up" style="text-align: center; font-size: 28px; margin-bottom: 40px; color: #4acfee;">Education & Certifications</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+          <div class="education-card" data-aos="fade-right" style="background: rgba(74, 207, 238, 0.1); padding: 30px; border-radius: 15px; border: 1px solid rgba(74, 207, 238, 0.2);">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+              <i class='bx bxs-graduation' style="font-size: 36px; color: #4acfee; margin-right: 15px;"></i>
+              <div>
+                <h4 style="color: #53f8c9; margin-bottom: 5px;">Advanced Diploma in Applied Management</h4>
+                <p style="opacity: 0.8;">Central University of Technology - 2021</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="education-card" data-aos="fade-left" style="background: rgba(74, 207, 238, 0.1); padding: 30px; border-radius: 15px; border: 1px solid rgba(74, 207, 238, 0.2);">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+              <i class='bx bxs-graduation' style="font-size: 36px; color: #4acfee; margin-right: 15px;"></i>
+              <div>
+                <h4 style="color: #53f8c9; margin-bottom: 5px;">National Diploma in Information Technology</h4>
+                <p style="opacity: 0.8;">Central University of Technology - 2019</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="certification-card" data-aos="fade-up" style="background: rgba(83, 248, 201, 0.1); padding: 30px; border-radius: 15px; border: 1px solid rgba(83, 248, 201, 0.2); grid-column: span 2;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+              <i class='bx bxs-certification' style="font-size: 36px; color: #53f8c9; margin-right: 15px;"></i>
+              <div>
+                <h4 style="color: #4acfee; margin-bottom: 5px;">CompTIA A+ Certified</h4>
+                <p style="opacity: 0.8;">Industry-recognized certification demonstrating foundational IT skills</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Languages Section -->
+      <div style="margin-top: 60px;">
+        <h3 data-aos="fade-up" style="text-align: center; font-size: 28px; margin-bottom: 40px; color: #4acfee;">Languages</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+          <div class="language-card" data-aos="zoom-in" data-aos-delay="100" style="background: rgba(74, 207, 238, 0.1); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid rgba(74, 207, 238, 0.2);">
+            <i class='bx bx-world' style="font-size: 36px; color: #4acfee; margin-bottom: 10px;"></i>
+            <h4 style="color: #53f8c9; margin-bottom: 5px;">English</h4>
+            <p style="opacity: 0.8;">Professional Proficiency</p>
+          </div>
+          
+          <div class="language-card" data-aos="zoom-in" data-aos-delay="200" style="background: rgba(74, 207, 238, 0.1); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid rgba(74, 207, 238, 0.2);">
+            <i class='bx bx-world' style="font-size: 36px; color: #4acfee; margin-bottom: 10px;"></i>
+            <h4 style="color: #53f8c9; margin-bottom: 5px;">Sesotho</h4>
+            <p style="opacity: 0.8;">Native Speaker</p>
+          </div>
+          
+          <div class="language-card" data-aos="zoom-in" data-aos-delay="300" style="background: rgba(74, 207, 238, 0.1); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid rgba(74, 207, 238, 0.2);">
+            <i class='bx bx-world' style="font-size: 36px; color: #4acfee; margin-bottom: 10px;"></i>
+            <h4 style="color: #53f8c9; margin-bottom: 5px;">Zulu</h4>
+            <p style="opacity: 0.8;">Proficient</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section">
+      <div class="contact-container">
+        <h2 data-aos="fade-down" style="font-size: 36px; margin-bottom: 30px; background: linear-gradient(45deg, #4acfee, #53f8c9); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Get In Touch</h2>
+        
+        <p data-aos="fade-up" style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">
+          I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology. Feel free to reach out!
+        </p>
+
+        <div class="contact-info">
+          <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+            <i class='bx bxs-phone'></i>
+            <h3>Phone</h3>
+            <p>+27 73 405 7746</p>
+            <p>+27 68 244 6113</p>
+          </div>
+          
+          <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+            <i class='bx bxs-envelope'></i>
+            <h3>Email</h3>
+            <p>tshepom15107@gmail.com</p>
+          </div>
+          
+          <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+            <i class='bx bxs-location-plus'></i>
+            <h3>Location</h3>
+            <p>229 Jeff Masemola<br>Pretoria, South Africa</p>
+          </div>
+        </div>
+
+        <div class="buttons-container" data-aos="fade-up" data-aos-delay="400" style="margin-top: 40px;">
+          <a href="mailto:tshepom15107@gmail.com" class="btn">Send Email</a>
+          <a href="tel:+27734057746" class="btn">Call Now</a>
+        </div>
+
+        <div class="social-icons" data-aos="fade-up" data-aos-delay="500" style="justify-content: center; margin-top: 30px;">
+          <a href="https://github.com/tshepom15107" target="_blank"><i class='bx bxl-github'></i></a>
+          <a href="https://www.linkedin.com/in/tshepo-mokoena-0727a621b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BbA3hnWtARiiM0vXi7WjgWA%3D%3D" target="_blank"><i class='bx bxl-linkedin'></i></a>
+          <a href="mailto:tshepom15107@gmail.com"><i class='bx bxl-gmail'></i></a>
+        </div>
+
+        <div class="references-section" data-aos="fade-up" data-aos-delay="600" style="margin-top: 50px;">
+          <h3 style="color: #4acfee; margin-bottom: 30px;">Professional References</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div style="background: rgba(74, 207, 238, 0.1); padding: 20px; border-radius: 10px;">
+              <h4 style="color: #53f8c9;">Given Ngobeni</h4>
+              <p style="opacity: 0.8;">Software Developer, FundaMedical</p>
+              <p style="opacity: 0.8;">071 317 4755</p>
+            </div>
+            <div style="background: rgba(74, 207, 238, 0.1); padding: 20px; border-radius: 10px;">
+              <h4 style="color: #53f8c9;">Mafa Galo</h4>
+              <p style="opacity: 0.8;">Project Coordinator, Cumlaude</p>
+              <p style="opacity: 0.8;">079 777 2159</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+
+    // Navigation functionality
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    // Show specific section
+    function showSection(sectionId) {
+      // Hide all sections
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Remove active class from all nav links
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      // Show target section
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+        
+        // Add active class to corresponding nav link
+        const correspondingLink = document.querySelector(`[data-section="${sectionId}"]`);
+        if (correspondingLink) {
+          correspondingLink.classList.add('active');
+        }
+      }
+      
+      // Close mobile menu if open
+      navMenu.classList.remove('active');
+    }
+
+    // Navigation click handlers
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionId = link.getAttribute('data-section');
+        showSection(sectionId);
+        
+        // Smooth scroll to top
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Hamburger menu toggle
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+
+    // Typing effect for hero text
+    function typeWriter(element, text, speed = 50) {
+      let i = 0;
+      element.innerHTML = '';
+      
+      function type() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      type();
+    }
+
+    // Initialize typing effect when page loads
+    window.addEventListener('load', () => {
+      const heroTitle = document.querySelector('.hero h1');
+      if (heroTitle) {
+        const originalText = heroTitle.textContent;
+        setTimeout(() => {
+          typeWriter(heroTitle, originalText, 50);
+        }, 1500);
+      }
+    });
+
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add loading animation
+    window.addEventListener('load', () => {
+      document.body.style.opacity = '1';
+    });
+
+    // Parallax effect for background video
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelector('.back-vid');
+      const speed = scrolled * 0.5;
+      if (parallax) {
+        parallax.style.transform = `translateY(${speed}px)`;
+      }
+    });
+
+    // Add floating animation to skill cards
+    function addFloatingAnimation() {
+      const skillCards = document.querySelectorAll('.skill-category, .timeline-item, .project-card');
+      
+      skillCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+        card.classList.add('floating');
+      });
+    }
+
+    // Add floating CSS animation
+    const style = document.createElement('style');
+    style.textContent = `
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+      
+      @keyframes floating {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      .floating:nth-child(even) {
+        animation-direction: reverse;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Initialize floating animation
+    setTimeout(addFloatingAnimation, 2000);
+
+    // Add intersection observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.querySelectorAll('.timeline-item, .project-card, .skill-category').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Add particle effect (optional enhancement)
+    function createParticles() {
+      const particleCount = 50;
+      const particles = [];
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.cssText = `
+          position: fixed;
+          width: 2px;
+          height: 2px;
+          background: rgba(74, 207, 238, 0.5);
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: -1;
+        `;
+        document.body.appendChild(particle);
+        particles.push({
+          element: particle,
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          speedX: (Math.random() - 0.5) * 0.5,
+          speedY: (Math.random() - 0.5) * 0.5
+        });
+      }
+      
+      function animateParticles() {
+        particles.forEach(particle => {
+          particle.x += particle.speedX;
+          particle.y += particle.speedY;
+          
+          if (particle.x > window.innerWidth) particle.x = 0;
+          if (particle.x < 0) particle.x = window.innerWidth;
+          if (particle.y > window.innerHeight) particle.y = 0;
+          if (particle.y < 0) particle.y = window.innerHeight;
+          
+          particle.element.style.left = particle.x + 'px';
+          particle.element.style.top = particle.y + 'px';
+        });
+        
+        requestAnimationFrame(animateParticles);
+      }
+      
+      animateParticles();
+    }
+
+    // Initialize particles after page load
+    setTimeout(createParticles, 1000);
+
+    // Add scroll-to-top functionality
+    const scrollToTop = document.createElement('button');
+    scrollToTop.innerHTML = '<i class="bx bx-chevron-up"></i>';
+    scrollToTop.className = 'scroll-to-top';
+    scrollToTop.style.cssText = `
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #4acfee, #53f8c9);
+      border: none;
+      border-radius: 50%;
+      color: #0e1217;
+      font-size: 24px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(74, 207, 238, 0.3);
+    `;
+    document.body.appendChild(scrollToTop);
+
+    scrollToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollToTop.style.opacity = '1';
+        scrollToTop.style.transform = 'translateY(0)';
+      } else {
+        scrollToTop.style.opacity = '0';
+        scrollToTop.style.transform = 'translateY(10px)';
+      }
+    });
+
+    // Add theme toggle functionality
+     const themeToggle = document.createElement('button');
+    themeToggle.innerHTML = '<i class="bx bx-sun"></i>';
+    themeToggle.className = 'theme-toggle';
+    themeToggle.title = 'Toggle Light/Dark Theme';
+    themeToggle.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #4acfee, #53f8c9);
+      border: 2px solid rgba(74, 207, 238, 0.5);
+      border-radius: 50%;
+      color: #0e1217;
+      font-size: 22px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1001;
+      box-shadow: 0 4px 15px rgba(74, 207, 238, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `;
+    document.body.appendChild(themeToggle);
+
+    let isDarkTheme = true;
+    themeToggle.addEventListener('click', () => {
+      isDarkTheme = !isDarkTheme;
+      if (isDarkTheme) {
+        themeToggle.innerHTML = '<i class="bx bx-moon"></i>';
+        document.body.style.background = 'linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%)';
+      } else {
+        themeToggle.innerHTML = '<i class="bx bx-sun"></i>';
+        document.body.style.background = 'linear-gradient(135deg, #0c6eb0 40%, #2e8071 50%, #76c8e8 100%)';
+      }
+    });
+
+    // Add cursor trail effect
+    const cursorTrail = [];
+    const trailLength = 10;
+
+    for (let i = 0; i < trailLength; i++) {
+      const trail = document.createElement('div');
+      trail.className = 'cursor-trail';
+      trail.style.cssText = `
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        background: rgba(74, 207, 238, ${(trailLength - i) / trailLength});
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.1s ease;
+      `;
+      document.body.appendChild(trail);
+      cursorTrail.push(trail);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      cursorTrail.forEach((trail, index) => {
+        setTimeout(() => {
+          trail.style.left = e.clientX + 'px';
+          trail.style.top = e.clientY + 'px';
+        }, index * 20);
+      });
+    });
+  </script>
+</body>
+</html>
